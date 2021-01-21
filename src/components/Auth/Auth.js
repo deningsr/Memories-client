@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Button,
@@ -10,12 +10,17 @@ import {
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from "./styles";
+import Input from "./Input";
 
 const Auth = () => {
   const classes = useStyles();
+  const [showPassword, setShowPassword] = useState(false);
+  const isSignup = true;
 
-  const isSignup = false;
+  const handleShowPassword = () =>
+    setShowPassword((prevShowPassword) => !prevShowPassword);
   const handleSubmit = () => {};
+  const handleChange = () => {};
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={3}>
@@ -27,10 +32,51 @@ const Auth = () => {
           <Grid container spacing={2}>
             {isSignup && (
               <>
-                <TextField name="firstName"></TextField>
+                <Input
+                  name="firstName"
+                  label="First Name"
+                  hanldeChange={handleChange}
+                  autoFocus
+                  half
+                />
+                <Input
+                  name="lastName"
+                  label="Last Name"
+                  hanldeChange={handleChange}
+                  half
+                />
               </>
             )}
+            <Input
+              name="email"
+              label="Email Address"
+              handleChange={handleChange}
+              type="email"
+            />
+            <Input
+              name="password"
+              label="Password"
+              handleChange={handleChange}
+              type="password"
+            />
+            {isSignup && (
+              <Input
+                name="confirmPassword"
+                label="Repeat Password"
+                handleChange={handleChange}
+                type="password"
+              />
+            )}
           </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            varaint="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            {isSignup ? "Sign Up" : "Sign In"}
+          </Button>
         </form>
       </Paper>
     </Container>
