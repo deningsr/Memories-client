@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { getPosts } from "../../actions/posts";
 const Home = () => {
   const [currentId, setCurrentId] = useState(null);
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,7 +15,6 @@ const Home = () => {
     <Grow in>
       <Container>
         <Grid
-          className={classes.mainContainer}
           container
           justify="space-between"
           alignItems="stretch"
