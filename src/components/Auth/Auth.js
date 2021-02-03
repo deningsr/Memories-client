@@ -50,7 +50,7 @@ const Auth = () => {
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
-    handleShowPassword(false);
+    setShowPassword(false);
   };
 
   const googleSuccess = async (res) => {
@@ -106,7 +106,8 @@ const Auth = () => {
               name="password"
               label="Password"
               handleChange={handleChange}
-              type="password"
+              type={showPassword ? "text" : "password"}
+              handleShowPassword={handleShowPassword}
             />
             {isSignup && (
               <Input
